@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>3.2</version>
+    <date>2017-05-06T12:46:11Z</date>
+    <groups>
+        <group>
+            <name>Zabbix Proxies</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template Zabbix Proxy AutoMaintenance</template>
+            <name>Template Zabbix Proxy AutoMaintenance</name>
+            <description/>
+            <groups>
+                <group>
+                    <name>Zabbix Proxies</name>
+                </group>
+            </groups>
+            <applications/>
+            <items/>
+            <discovery_rules/>
+            <httptests/>
+            <macros>
+                <macro>
+                    <macro>{$AUTO_MAINTENANCE_APIHOST}</macro>
+                    <value>http://localhost</value>
+                </macro>
+                <macro>
+                    <macro>{$AUTO_MAINTENANCE_PASSWORD}</macro>
+                    <value>APIUserPassword</value>
+                </macro>
+                <macro>
+                    <macro>{$AUTO_MAINTENANCE_USERNAME}</macro>
+                    <value>api_user</value>
+                </macro>
+            </macros>
+            <templates>
+                <template>
+                    <name>Template App Zabbix Agent</name>
+                </template>
+            </templates>
+            <screens/>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <expression>{Template Zabbix Proxy Agent:agent.ping.nodata(5m)}=1</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>Zabbix agent on {HOST.NAME} is unreachable for 5 minutes</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>3</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
+    </triggers>
+</zabbix_export>
